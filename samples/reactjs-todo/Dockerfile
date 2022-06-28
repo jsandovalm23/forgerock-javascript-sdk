@@ -7,4 +7,4 @@ WORKDIR /usr/share/nginx/html
 COPY --from=base /app/builder/samples/reactjs-todo/public ./public
 COPY --from=base /app/builder/dist/samples/reactjs-todo .
 
-EXPOSE 80
+EXPOSE 8443

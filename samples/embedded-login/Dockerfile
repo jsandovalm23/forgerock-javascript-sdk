@@ -9,5 +9,5 @@ ENV NODE_ENV production
 
 COPY --from=base /app/builder/dist/samples/embedded-login .
 
-EXPOSE ${PORT}
+EXPOSE 8001
 

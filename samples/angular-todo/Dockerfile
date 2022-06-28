@@ -6,5 +6,5 @@ WORKDIR /usr/share/nginx/html
 
 COPY --from=base /app/builder/dist/samples/angular-todo  .
 
-ENV PORT=8000
+ENV PORT=80
 EXPOSE ${PORT}
