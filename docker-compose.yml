@@ -40,8 +40,6 @@ services:
       - api
   angular-todo:
     container_name: angular-todo
-    depends_on:
-      - 'todo-api'
     build:
       context: ./
       dockerfile: ./samples/angular-todo/Dockerfile
@@ -66,11 +64,11 @@ services:
     restart: on-failure
   reactjs-todo:
     container_name: reactjs-todo
-    depends_on:
-      - 'todo-api'
     build:
       context: ./
       dockerfile: ./samples/reactjs-todo/Dockerfile
     ports:
       - '8443:80'
     restart: on-failure
+networks:
+  api:
