@@ -69,7 +69,7 @@ export class AppComponent implements OnInit {
 
     Config.set({
       clientId: environment.WEB_OAUTH_CLIENT,
-      redirectUri: `${window.location.href}`,
+      redirectUri: `${window.location.origin}/callback`,
       scope: 'openid profile email',
       serverConfig: {
         baseUrl: environment.AM_URL,

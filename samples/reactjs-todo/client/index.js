@@ -40,7 +40,7 @@ import './styles/index.scss';
 if (DEBUGGER) debugger;
 Config.set({
   clientId: WEB_OAUTH_CLIENT,
-  redirectUri: `${window.location.href}/callback`,
+  redirectUri: `${window.location.origin}/callback`,
   scope: 'openid profile email',
   serverConfig: {
     baseUrl: AM_URL,

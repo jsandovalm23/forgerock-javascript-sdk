@@ -1,4 +1,0 @@
-deploy:
-  - envsubst > .env < .env.example
-  - okteto build -t okteto.dev/base:${OKTETO_GIT_COMMIT} .
-  - okteto deploy

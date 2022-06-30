@@ -27,14 +27,14 @@ services:
       - 8081
     environment:
       PORT: 8081
-      AM_URL: ${AM_URL}
-      DEBUGGER_OFF: ${DEBUGGER-OFF}
-      REALM_PATH: ${REALM_PATH}
-      JOURNEY_LOGIN: ${JOURNEY_LOGIN}
-      JOURNEY_REGISTER: ${JOURNEY_REGISTER}
-      WEB_OAUTH_CLIENT: ${WEB_OAUTH_CLIENT}
-      REST_OAUTH_CLIENT: ${REST_OAUTH_CLIENT}
-      REST_OAUTH_SECRET: ${REST_OAUTH_SECRET}
+      AM_URL: $AM_URL
+      DEBUGGER_OFF: $DEBUGGER-OFF
+      REALM_PATH: $REALM_PATH
+      JOURNEY_LOGIN: $JOURNEY_LOGIN
+      JOURNEY_REGISTER: $JOURNEY_REGISTER
+      WEB_OAUTH_CLIENT: $WEB_OAUTH_CLIENT
+      REST_OAUTH_CLIENT: $REST_OAUTH_CLIENT
+      REST_OAUTH_SECRET: $REST_OAUTH_SECRET
     restart: on-failure
     networks:
       - api
@@ -43,6 +43,13 @@ services:
     build:
       context: ./
       dockerfile: ./samples/angular-todo/Dockerfile
+      args:
+        AM_URL: $AM_URL
+        DEBUGGER_OFF: $DEBUGGER-OFF
+        REALM_PATH: $REALM_PATH
+        JOURNEY_LOGIN: $JOURNEY_LOGIN
+        JOURNEY_REGISTER: $JOURNEY_REGISTER
+        WEB_OAUTH_CLIENT: $WEB_OAUTH_CLIENT
     ports:
       - '8000:80'
   central-login:
@@ -50,6 +57,16 @@ services:
     build:
       context: ./
       dockerfile: ./samples/central-login/Dockerfile
+      args:
+        AM_URL: $AM_URL
+        DEBUGGER_OFF: $DEBUGGER-OFF
+        REALM_PATH: $REALM_PATH
+        JOURNEY_LOGIN: $JOURNEY_LOGIN
+        API_URL: $API_URL
+        JOURNEY_REGISTER: $JOURNEY_REGISTER
+        WEB_OAUTH_CLIENT: $WEB_OAUTH_CLIENT
+        REST_OAUTH_CLIENT: $REST_OAUTH_CLIENT
+        REST_OAUTH_SECRET: $REST_OAUTH_SECRET
     ports:
       - 8002:80
     restart: on-failure
@@ -59,6 +76,17 @@ services:
     build:
       context: ./
       dockerfile: ./samples/embedded-login/Dockerfile
+      args:
+        PORT: 8081
+        AM_URL: $AM_URL
+        DEBUGGER_OFF: $DEBUGGER-OFF
+        REALM_PATH: $REALM_PATH
+        JOURNEY_LOGIN: $JOURNEY_LOGIN
+        JOURNEY_REGISTER: $JOURNEY_REGISTER
+        WEB_OAUTH_CLIENT: $WEB_OAUTH_CLIENT
+        TREE: $TREE
+        SCOPE: $SCOPE
+
     ports:
       - 8001:80
     restart: on-failure
@@ -67,6 +95,14 @@ services:
     build:
       context: ./
       dockerfile: ./samples/reactjs-todo/Dockerfile
+      args:
+        AM_URL: $AM_URL
+        DEBUGGER_OFF: $DEBUGGER-OFF
+        REALM_PATH: $REALM_PATH
+        API_URL: $API_URL
+        JOURNEY_LOGIN: $JOURNEY_LOGIN
+        JOURNEY_REGISTER: $JOURNEY_REGISTER
+        WEB_OAUTH_CLIENT: $WEB_OAUTH_CLIENT
     ports:
       - '8443:80'
     restart: on-failure
