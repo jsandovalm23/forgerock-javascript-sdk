@@ -11,6 +11,7 @@ build:
   angular-todo:
     context: .
     dockerfile: samples/angular-todo/Dockerfile
+    target: base
     args:
       AM_URL: $AM_URL
       DEBUGGER_OFF: $DEBUGGER-OFF
@@ -28,6 +29,7 @@ build:
   central-login:
     context: .
     dockerfile: samples/central-login/Dockerfile
+    target: base
     args:
       AM_URL: $AM_URL
       DEBUGGER_OFF: $DEBUGGER-OFF
@@ -46,6 +48,7 @@ build:
   embedded-login:
     context: .
     dockerfile: samples/embedded-login/Dockerfile
+    target: base
     args:
       AM_URL: $AM_URL
       REALM_PATH: $REALM_PATH
@@ -62,6 +65,7 @@ build:
   reactjs-todo:
     context: .
     dockerfile: samples/reactjs-todo/Dockerfile
+    target: base
     args:
       AM_URL: $AM_URL
       DEBUGGER_OFF: $DEBUGGER-OFF
@@ -88,7 +92,7 @@ deploy:
     file: docker-compose.yml
   commands:
     - envsubst < .env.example > .env
-    - okteto build -t okteto.dev/base:${OKTETO_GIT_COMMIT} . --build-arg AM_URL=$AM_URL --build-arg DEBUGGER_OFF=$DEBUGGER_OFF --build-arg  REALM_PATH=$REALM_PATH --build-arg JOURNEY_REGISTER=$JOURNEY_REGISTER --build-arg WEB_OAUTH_CLIENT=$WEB_OAUTH_CLIENT --build-arg REST_OAUTH_CLIENT=$REST_OAUTH_CLIENT --build-arg REST_OAUTH_SECRET=$REST_OAUTH_SECRET
+    - okteto build -t okteto.dev/base:${OKTETO_GIT_COMMIT} --build-arg AM_URL=$AM_URL --build-arg DEBUGGER_OFF=$DEBUGGER_OFF --build-arg  REALM_PATH=$REALM_PATH --build-arg JOURNEY_REGISTER=$JOURNEY_REGISTER --build-arg WEB_OAUTH_CLIENT=$WEB_OAUTH_CLIENT --build-arg REST_OAUTH_CLIENT=$REST_OAUTH_CLIENT --build-arg REST_OAUTH_SECRET=$REST_OAUTH_SECRET .
     - okteto build -t okteto.dev/react:${OKTETO_GIT_COMMIT} samples/reactjs-todo/Dockerfile
     - okteto build -t okteto.dev/angular:${OKTETO_GIT_COMMIT} samples/angular-todo/Dockerfile
     - okteto build -t okteto.dev/central:${OKTETO_GIT_COMMIT} samples/central-login/Dockerfile
