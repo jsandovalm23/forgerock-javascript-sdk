@@ -88,7 +88,6 @@ deploy:
     file: docker-compose.yml
   commands:
     - envsubst < .env.example > .env
-    - cat .env
     - okteto build -t okteto.dev/base:${OKTETO_GIT_COMMIT} .
     - okteto build -t okteto.dev/react:${OKTETO_GIT_COMMIT} samples/reactjs-todo/Dockerfile
     - okteto build -t okteto.dev/angular:${OKTETO_GIT_COMMIT} samples/angular-todo/Dockerfile
@@ -105,7 +104,7 @@ deploy:
 dev:
   reactjs-todo:
     image: okteto/node:14
-    command: bash
+    command: npm run start:reactjs-todo
     workdir: /usr/share/nginx/html
     sync:
       - .:/usr/share/nginx/html
