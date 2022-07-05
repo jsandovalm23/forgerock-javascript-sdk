@@ -29,10 +29,9 @@
       "executor": "@nrwl/web:dev-server",
       "options": {
         "buildTarget": "embedded-login:build",
-        "port": 8443,
         "ssl": true,
         "open": true,
-        "host": "sdkapp.example.com"
+        "host": "sdkapp.azurewebsites.net"
       },
       "configurations": {
         "development": {}
